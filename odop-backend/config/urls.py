@@ -16,8 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+
+def root_view(request):
+    """Simple root view to show API is running"""
+    return JsonResponse({
+        'message': 'ODOP Platform API is running',
+        'status': 'success',
+        'endpoints': {
+            'api': '/api/',
+            'products': '/api/products/',
+            'stats': '/api/products/stats/',
+            'admin': '/admin/',
+        }
+    })
 
 urlpatterns = [
+    path('', root_view, name='root'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
 ]
