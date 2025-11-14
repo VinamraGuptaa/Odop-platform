@@ -22,6 +22,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         csv_file = options["csv_file"]
 
+        # Check if products already exist
+        existing_count = Product.objects.count()
+        if existing_count > 0 and not options["clear"]:
+            self.stdout.write(
+                self.style.WARNING(
+                    f"⚠️  Database already contains {existing_count} products. Skipping import."
+                )
+            )
+            self.stdout.write(
+                "💡 Use --clear flag to reimport: python manage.py import_data file.csv --clear"
+            )
+            return
+
         if options["clear"]:
             self.stdout.write("Clearing existing data...")
             Product.objects.all().delete()
