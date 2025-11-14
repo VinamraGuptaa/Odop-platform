@@ -31,7 +31,10 @@ const ProductCard = ({ product, onClick }) => {
         // Check if it's a Google Drive link
         if (photo.includes('drive.google.com')) {
             // Use Django proxy to fetch the image (bypasses CORS)
-            return `http://127.0.0.1:8000/api/proxy-image/?url=${encodeURIComponent(photo)}`;
+            const apiBaseUrl = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000/api';
+            // Remove /api from the end if it exists, then add the full path
+            const baseUrl = apiBaseUrl.replace(/\/api\/?$/, '');
+            return `${baseUrl}/api/proxy-image/?url=${encodeURIComponent(photo)}`;
         }
 
         return photo;
