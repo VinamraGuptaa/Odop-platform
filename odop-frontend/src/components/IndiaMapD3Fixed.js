@@ -118,6 +118,8 @@ const IndiaMapD3Fixed = ({ products = [], onStateClick, onProductClick }) => {
             'Dadara & Nagar Havelli': 'Dadra & Nagar Haveli (UT)',
             'Daman & Diu': 'Daman & Diu (UT)',
             'Andaman & Nicobar Island': 'Andaman and Nicobar Islands',
+            'Orissa': 'Odisha',  // Old name → New name
+            'Uttaranchal': 'Uttarakhand',  // Old name → New name
             // Add more mappings as needed
         };
 
