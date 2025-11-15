@@ -113,14 +113,18 @@ const IndiaMapD3Fixed = ({ products = [], onStateClick, onProductClick }) => {
     const matchStateName = (geoName) => {
         // Map GeoJSON state names to database state names
         const nameMapping = {
+            // Format differences
             'Jammu & Kashmir': 'Jammu and Kashmir',
             'NCT of Delhi': 'Delhi',
             'Dadara & Nagar Havelli': 'Dadra & Nagar Haveli (UT)',
+            'Dadra and Nagar Haveli': 'Dadra & Nagar Haveli (UT)',
             'Daman & Diu': 'Daman & Diu (UT)',
+            'Daman and Diu': 'Daman & Diu (UT)',
             'Andaman & Nicobar Island': 'Andaman and Nicobar Islands',
-            'Orissa': 'Odisha',  // Old name → New name
-            'Uttaranchal': 'Uttarakhand',  // Old name → New name
-            // Add more mappings as needed
+            'Andaman and Nicobar': 'Andaman and Nicobar Islands',
+            // Old names → New names
+            'Orissa': 'Odisha',
+            'Uttaranchal': 'Uttarakhand',
         };
 
         return nameMapping[geoName] || geoName;
